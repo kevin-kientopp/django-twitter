@@ -6,6 +6,6 @@ app_name = 'twitter'
 urlpatterns = [
     path('', views.index, name='index'),
     path('signup', views.signup, name='signup'),
-    path('login', views.login, name='login'),
+    path('log_in', views.log_in, name='log_in'),
     path('home', views.home, name='home'),
 ]
