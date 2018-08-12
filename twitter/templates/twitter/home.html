@@ -1,1 +1,20 @@
-This is Home!
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'twitter/style.css' %}">
+
+{% if user.is_authenticated %}
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Tweet">
+  </form>
+{% endif %}
+
+<div> List of tweets goes here...</div>
+{% for tweet in tweets %}
+  <div class="tweet">
+    <div>{{tweet.body}}</div>
+    <div>{{tweet.auth_user}}</div>
+    <div>{{tweet.published_date}}</div>
+  </div>
+{% endfor %}

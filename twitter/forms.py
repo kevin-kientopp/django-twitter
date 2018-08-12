@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from .models import Tweet
 
 class SignupForm(forms.Form):
     email = forms.EmailField()
@@ -15,3 +16,13 @@ class SignupForm(forms.Form):
         email = cleaned_data.get('email')
         if User.objects.get(email=email):
             raise forms.ValidationError('That email is already in use.')
+
+class TweetForm(forms.ModelForm):
+    body = forms.CharField(
+            max_length = 140,
+            label = '',
+            widget = forms.Textarea(attrs={'placeholder': "What's happening?"})
+            )
+    class Meta:
+        model = Tweet
+        fields = ('body',)

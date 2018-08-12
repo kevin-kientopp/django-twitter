@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
+from .forms import TweetForm
+from .models import Tweet
+from django.utils import timezone
 import logging
 
 logger = logging.getLogger('django')
@@ -36,4 +39,14 @@ def log_in(request):
     return render(request, 'twitter/login.html', {'form': form})
 
 def home(request):
-    return render(request, 'twitter/home.html')
+    if request.method == 'POST':
+        form = TweetForm(data=request.POST)
+        if form.is_valid():
+            tweet = form.save(commit=False)
+            tweet.auth_user = request.user
+            tweet.published_date = timezone.now()
+            tweet.save() 
+            return redirect('twitter:home')
+    else:
+        form = TweetForm()
+    return render(request, 'twitter/home.html', {'form': form, 'tweets': Tweet.objects.all()})
