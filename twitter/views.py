@@ -49,4 +49,4 @@ def home(request):
             return redirect('twitter:home')
     else:
         form = TweetForm()
-    return render(request, 'twitter/home.html', {'form': form, 'tweets': Tweet.objects.all()})
+    return render(request, 'twitter/home.html', {'form': form, 'tweets': Tweet.objects.all(), 'username': request.user.username, 'num_tweets': Tweet.objects.filter(auth_user=request.user).count()})
