@@ -1,4 +1,4 @@
-from django.contrib.auth import login as auth_login, authenticate
+from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.http import HttpResponseRedirect
@@ -11,6 +11,8 @@ import logging
 logger = logging.getLogger('django')
 
 def index(request):
+    if request.user.is_authenticated:
+        return redirect('twitter:home')
     return render(request, 'twitter/index.html')
 
 def signup(request):
@@ -39,6 +41,8 @@ def login(request):
     return render(request, 'twitter/login.html', {'form': form})
 
 def home(request):
+    if not request.user.is_authenticated:
+        return redirect('twitter:index')
     if request.method == 'POST':
         form = TweetForm(data=request.POST)
         if form.is_valid():
@@ -50,3 +54,7 @@ def home(request):
     else:
         form = TweetForm()
     return render(request, 'twitter/home.html', {'form': form, 'tweets': Tweet.objects.all(), 'username': request.user.username, 'num_tweets': Tweet.objects.filter(auth_user=request.user).count()})
+
+def logout(request):
+    auth_logout(request)
+    return redirect('twitter:index')
