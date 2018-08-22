@@ -1,4 +1,10 @@
-<div>Welcome to my Twitter clone!</div>
+{% load static %}
 
-<div><a href="{% url 'twitter:signup' %}"><button>Sign Up</button></a></div>
-<div><a href="{% url 'twitter:log_in' %}"><button>Log in</button></a></div>
+<link rel="stylesheet" type="text/css" href="{% static 'twitter/style.css' %}">
+
+<div class="center">
+  <div>Welcome to my Twitter clone!</div>
+
+  <a class="blue button" href="{% url 'twitter:signup' %}">Sign up</a>
+  <a class="white button" href="{% url 'twitter:login' %}">Log in</a>
+</div>

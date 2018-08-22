@@ -2,11 +2,12 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'twitter/style.css' %}">
 
+<div class="center">
 <h1>Login</h1>
 
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
-  <input type="submit" value="Submit">
+  <input type="submit" value="Submit" class="button blue">
 </form>
-
+</div>
