@@ -111,3 +111,6 @@ django_heroku.settings(locals())
 ssl_require = 'localhost' not in os.environ['DATABASE_URL']
 locals()['DATABASES']['default'] = dj_database_url.config(
     conn_max_age=django_heroku.MAX_CONN_AGE, ssl_require=ssl_require)
+
+
+LOGIN_URL = 'twitter:login'

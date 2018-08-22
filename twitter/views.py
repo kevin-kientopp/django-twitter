@@ -1,11 +1,13 @@
 from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate
-from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.utils import timezone
+
 from .forms import TweetForm
 from .models import Tweet
-from django.utils import timezone
 import logging
 
 logger = logging.getLogger('django')
@@ -40,9 +42,8 @@ def login(request):
         form = AuthenticationForm()
     return render(request, 'twitter/login.html', {'form': form})
 
+@login_required
 def home(request):
-    if not request.user.is_authenticated:
-        return redirect('twitter:index')
     if request.method == 'POST':
         form = TweetForm(data=request.POST)
         if form.is_valid():
