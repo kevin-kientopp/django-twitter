@@ -56,6 +56,10 @@ def home(request):
         form = TweetForm()
     return render(request, 'twitter/home.html', {'form': form, 'tweets': Tweet.objects.all(), 'username': request.user.username, 'num_tweets': Tweet.objects.filter(auth_user=request.user).count()})
 
+def usertweets(request, username):
+    user = User.objects.get(username=username)
+    return render(request, 'twitter/usertweets.html', {'tweets': Tweet.objects.filter(auth_user=user)})
+
 def logout(request):
     auth_logout(request)
     return redirect('twitter:index')

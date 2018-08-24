@@ -3,11 +3,14 @@
 <link rel="stylesheet" type="text/css" href="{% static 'twitter/style.css' %}">
 
 <div class="grid">
+  <div class="nav">
+    <a class="" href="{% url 'twitter:home' %}">Home</a>
+    <a class="right" href="{% url 'twitter:logout' %}">Logout</a>
+  </div>
   <div class="sidebar">
     <div class="card">
       <div>@{{ username }}</div>
       <div>Tweets: {{ num_tweets }}</div>
-      <div><a class="button blue center" href="{% url 'twitter:logout' %}">Log out</a></div>
     </div>
   </div>
 {% if user.is_authenticated %}
@@ -24,7 +27,7 @@
 {% for tweet in tweets %}
   <div class="card">
     <div>
-      <span>@{{tweet.auth_user}}</span>
+      <span><a href="{% url 'twitter:usertweets' tweet.auth_user %}">@{{tweet.auth_user}}</a></span>
       <span>{{tweet.published_date|date:'M d'}}</span>
     </div>
     <div class="tweet-body">{{tweet.body}}</div>
