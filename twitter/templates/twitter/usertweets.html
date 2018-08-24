@@ -17,7 +17,7 @@
 {% for tweet in tweets %}
   <div class="card">
     <div>
-      <span><a href="{% url 'twitter:usertweets' tweet.auth_user %}">@{{tweet.auth_user}}</a></span>
+      <span>@{{tweet.auth_user}}</span>
       <span>{{tweet.published_date|date:'M d'}}</span>
     </div>
     <div class="tweet-body">{{tweet.body}}</div>

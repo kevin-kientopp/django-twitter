@@ -106,6 +106,7 @@ textarea {
 .tweetform {
   grid-column-start: 2;
   grid-row-start: 2;
+  text-align: center;
 }
 
 .blue {
@@ -132,6 +133,7 @@ textarea {
   margin-bottom: 10px;
   padding: 5px;
   font: 400 11px system-ui;
+  cursor: pointer;
 }
 
 * {
