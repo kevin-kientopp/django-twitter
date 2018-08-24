@@ -58,7 +58,8 @@ def home(request):
 
 def usertweets(request, username):
     user = User.objects.get(username=username)
-    return render(request, 'twitter/usertweets.html', {'tweets': Tweet.objects.filter(auth_user=user)})
+    tweets = Tweet.objects.filter(auth_user=user)
+    return render(request, 'twitter/usertweets.html', {'tweets': tweets, 'username': username, 'num_tweets': tweets.count()})
 
 def logout(request):
     auth_logout(request)

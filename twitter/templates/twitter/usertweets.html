@@ -2,11 +2,18 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'twitter/style.css' %}">
 
+<div class="user-grid">
 <div class="nav">
   <a class="" href="{% url 'twitter:home' %}">Home</a>
   <a class="right" href="{% url 'twitter:logout' %}">Logout</a>
 </div>
-<div class="tweets">
+<div class="sidebar">
+  <div class="card">
+    <div>@{{ username }}</div>
+    <div>Tweets: {{ num_tweets }}</div>
+  </div>
+</div>
+<div class="user-tweets">
 {% for tweet in tweets %}
   <div class="card">
     <div>
@@ -17,3 +24,4 @@
   </div>
 {% endfor %}
 </div> 
+</div>
