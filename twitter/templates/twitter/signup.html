@@ -2,17 +2,17 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'twitter/style.css' %}">
 
-<div class="center">
-<h1>Create your account</h1>
+<div class="container">
+  <h1>Create your account</h1>
 
-<form method="post">
-  {% csrf_token %}
-  {% for field in form %}
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
     <div class="fieldWrapper">
-        {{ field.errors }}
-        {{ field.label_tag }} {{ field }}
+      {{ field.errors }}
+      {{ field.label_tag }} {{ field }}
     </div>
-  {% endfor %}
-  <input type="submit" value="Submit" class="button blue">
-</form>
+    {% endfor %}
+    <input type="submit" value="Submit" class="button button--primary-color">
+  </form>
 </div>

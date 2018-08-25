@@ -2,9 +2,9 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'twitter/style.css' %}">
 
-<div class="center">
+<div class="signup-container">
   <div>Welcome to my Twitter clone!</div>
 
-  <a class="blue large button" href="{% url 'twitter:signup' %}">Sign up</a>
-  <a class="white large button" href="{% url 'twitter:login' %}">Log in</a>
+  <div class="signup-btn-container"><a class="button button--large button--primary-color" href="{% url 'twitter:signup' %}">Sign up</a></div>
+  <div class="signup-btn-container"><a class="button button--large button--secondary-color" href="{% url 'twitter:login' %}">Log in</a></div>
 </div>

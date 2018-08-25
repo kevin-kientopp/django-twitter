@@ -2,10 +2,10 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'twitter/style.css' %}">
 
-<div class="grid">
+<div class="home-container">
   <div class="nav">
     <a class="" href="{% url 'twitter:home' %}">Home</a>
-    <a class="right" href="{% url 'twitter:logout' %}">Logout</a>
+    <a class="nav__right-item" href="{% url 'twitter:logout' %}">Logout</a>
   </div>
   <div class="sidebar">
     <div class="card">
@@ -18,7 +18,7 @@
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Tweet" class="large button blue">
+    <input type="submit" value="Tweet" class="button button--large button--primary-color">
   </form>
 </div>
 {% endif %}
